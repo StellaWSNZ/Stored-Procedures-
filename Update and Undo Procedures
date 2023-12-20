@@ -16,7 +16,7 @@ SELECT * FROM Drowning WHERE DrowningID=30
 
 -- 3. UPDATE MULTIPLE COLUMNS
 -- To seperate each column name use | 
--- Only able to update for 1 DrowningID at a time
+-- Only able to update for one DrowningID at a time
 
 SELECT * FROM Drowning WHERE DrowningID=16
 EXEC UpdateColumn @ColumnName='GivenNames|FamilyName|Age',@Value='Stella Jane| McGann | 21', @DrowningID=16
