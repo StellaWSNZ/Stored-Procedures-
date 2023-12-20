@@ -10,8 +10,9 @@ SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
 
 -- 2. UNDO ONE COLUMN UPDATE
 SELECT * FROM Drowning WHERE DrowningID=30
-EXEC UpdateColumn @ColumnName='GivenNames', @DrowningID=30
+EXEC UndoColumnUpdate @ColumnName='GivenNames', @DrowningID=30
 SELECT * FROM Drowning WHERE DrowningID=30
+SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
 
 
 -- 3. UPDATE MULTIPLE COLUMNS
@@ -33,5 +34,3 @@ EXEC UndoColumnUpdate @DrowningID=16, @ColumnName='FamilyName'
 EXEC UndoColumnUpdate @DrowningID=16, @ColumnName='Age'
 SELECT * FROM Drowning WHERE DrowningID=16
 SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
-
-
