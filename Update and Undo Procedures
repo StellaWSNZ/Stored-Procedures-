@@ -3,14 +3,14 @@
 
 -- 1. UPDATE ONE COLUMN & VALUE
 SELECT * FROM Drowning WHERE DrowningID=30
-EXEC UpdateColumn @ColumnName='GivenNames|FamilyName|Age',@Value='Stella Jane| McGann | 21', @DrowningID=30
+EXEC UpdateColumn @ColumnName='GivenNames',@Value='Stella', @DrowningID=30
 SELECT * FROM Drowning WHERE DrowningID=30
 SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
 
 
 -- 2. UNDO ONE COLUMN UPDATE
 SELECT * FROM Drowning WHERE DrowningID=30
-EXEC UpdateColumn @ColumnName='GivenNames',@Value='Stella', @DrowningID=30
+EXEC UpdateColumn @ColumnName='GivenNames', @DrowningID=30
 SELECT * FROM Drowning WHERE DrowningID=30
 
 
