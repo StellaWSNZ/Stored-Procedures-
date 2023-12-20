@@ -1,0 +1,37 @@
+-- GUIDE TO NEW UPDATE AND UNDO STORED PROCEDURES
+-- Select statements but are helpful for understanding
+
+-- 1. UPDATE ONE COLUMN & VALUE
+SELECT * FROM Drowning WHERE DrowningID=30
+EXEC UpdateColumn @ColumnName='GivenNames|FamilyName|Age',@Value='Stella Jane| McGann | 21', @DrowningID=30
+SELECT * FROM Drowning WHERE DrowningID=30
+SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
+
+
+-- 2. UNDO ONE COLUMN UPDATE
+SELECT * FROM Drowning WHERE DrowningID=30
+EXEC UpdateColumn @ColumnName='GivenNames',@Value='Stella', @DrowningID=30
+SELECT * FROM Drowning WHERE DrowningID=30
+
+
+-- 3. UPDATE MULTIPLE COLUMNS
+-- To seperate each column name use | 
+-- Only able to update for 1 DrowningID at a time
+
+SELECT * FROM Drowning WHERE DrowningID=16
+EXEC UpdateColumn @ColumnName='GivenNames|FamilyName|Age',@Value='Stella Jane| McGann | 21', @DrowningID=16
+SELECT * FROM Drowning WHERE DrowningID=16
+SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
+
+
+-- 4. UNDO MULTIPLE COLUMN UPDATES
+-- Can only undo one column update at a time
+
+SELECT * FROM Drowning WHERE DrowningID=16
+EXEC UndoColumnUpdate @DrowningID=16, @ColumnName='GivenNames'
+EXEC UndoColumnUpdate @DrowningID=16, @ColumnName='FamilyName'
+EXEC UndoColumnUpdate @DrowningID=16, @ColumnName='Age'
+SELECT * FROM Drowning WHERE DrowningID=16
+SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
+
+
