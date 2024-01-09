@@ -1,5 +1,5 @@
 -- GUIDE TO NEW UPDATE AND UNDO STORED PROCEDURES
--- Select statements but are helpful for understanding
+-- Select statements are unnecessary but are helpful for understanding
 
 -- 1. UPDATE ONE COLUMN & VALUE
 SELECT * FROM Drowning WHERE DrowningID=30
