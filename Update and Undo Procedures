@@ -34,3 +34,21 @@ EXEC UndoColumnUpdate @DrowningID=16, @ColumnName='FamilyName'
 EXEC UndoColumnUpdate @DrowningID=16, @ColumnName='Age'
 SELECT * FROM Drowning WHERE DrowningID=16
 SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
+
+
+-- 5. UPDATE USING DESC COLUMNS
+-- Can use a combination of Desc columns and ID Columns
+
+SELECT * FROM Drowning WHERE DrowningID=16
+EXEC UpdateColumn @ColumnName='GivenNames|EthnicityDesc|Age|GenderID',@Value='Stella Jane| NZ Eurpoean | 21 |0', @DrowningID=16
+SELECT * FROM Drowning WHERE DrowningID=16
+SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
+
+
+-- 6. UNDO DESC COLUMN UPDATE
+-- Like other columns can only do one update at a time
+
+select * from Drowning where DrowningID = 16
+EXEC UndoColumnUpdate @DrowningID=16, @ColumnName='EthnicityDesc'
+select * from Drowning where DrowningID = 16
+SELECT * FROM Update_AUDIT ORDER BY DateTimeStamp DESC
